@@ -1,0 +1,366 @@
+<!doctype html>
+<html>
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Moodify</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href="moodboard.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!---------- LOGIN PAGE ----------> 
+    <div id="login-page" class="container-fluid">
+      <a tabindex="0" id="info-btn" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="What is Moodify?" data-bs-content="Moodify allows a Spotify user to view their top Artists, Genres, and Songs. Utilizing the Spotify API, our website also helps user's visualize their taste in music by providing a moodboad based on preferences.">?</a>
+      <div id="login">        
+        <div id="title" class="row d-flex justify-content-center"> Moodify </div>
+        <div class="button-container">
+          <a href="/login" class="button">Log in with Spotify</a>
+        </div>
+        <footer class="row d-flex justify-content-center mx-auto">Made By: Rachel Pham, Adrian Khor, Harchet Singh, and Gency Dela Torre</footer>
+      </div>
+    </div>
+
+    <!---------- SPOTIFY TEMPLATE FORMAT ----------> 
+    <div id="loggedin">
+      <div id="user-profile">
+      </div>
+      <div id="user-topSongs">
+      </div>
+      <div id="user-topArtists">
+      </div>
+      <div id="user-topGenres">
+      </div>
+      <div id="oauth">
+    </div>
+
+<!---------- JAVASCRIPT FOR RETURNING USER'S DATA (Page 2) ----------> 
+    <script id="user-profile-template" type="text/x-handlebars-template">
+      <h2 id="title2" class="d-flex justify-content-center mx-auto">Welcome to Moodify, {{display_name}}!</h2>
+      <a href="{{external_urls.spotify}}"><img class="prof-pic" width="200" src="{{images.0.url}}" /></a>
+    </script>
+
+<!---------- top song template ----------> 
+    <script id="user-topSongs-template" type="text/x-handlebars-template">
+      <h3 id="subtitle">YOUR TOP SONGS</h3>
+      <ul class="info">
+        <li class="list-group-item">1. {{items.0.name}} by {{items.0.artists.0.name}}</li>
+        <li class="list-group-item">2. {{items.1.name}} by {{items.1.artists.0.name}}</li>
+        <li class="list-group-item">3. {{items.2.name}} by {{items.2.artists.0.name}}</li>
+        <li class="list-group-item">4. {{items.3.name}} by {{items.3.artists.0.name}}</li>
+        <li class="list-group-item">5. {{items.4.name}} by {{items.4.artists.0.name}}</li>
+      </ul>
+    </script>
+
+<!---------- top artists template ----------> 
+    <script id="user-topArtists-template" type="text/x-handlebars-template">
+      <h3 id="subtitle">TOP ARTISTS</h3>
+      <div id="cards_landscape_wrap-2">
+        <div class="container">
+            <div class="row d-flex justify-content-evenly">
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="{{items.0.images.0.url}}" alt="" />
+                                </div>
+                                <div class="text-container">
+                                    <h6>{{items.0.name}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="{{items.1.images.1.url}}" alt="" />
+                                </div>
+                                <div class="text-container">                                    
+                                    <h6>{{items.1.name}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="{{items.2.images.2.url}}" alt="" />
+                                </div>
+
+                                <div class="text-container">
+                                    <h6>{{items.2.name}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                    <a href="">
+                        <div class="card-flyer">
+                            <div class="text-box">
+                                <div class="image-box">
+                                    <img src="{{items.3.images.3.url}}" alt="" />
+                                </div>
+                                <div class="text-container">
+                                    <h6>{{items.3.name}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                  <a href="">
+                      <div class="card-flyer">
+                          <div class="text-box">
+                              <div class="image-box">
+                                  <img src="{{items.4.images.4.url}}" alt="" />
+                              </div>
+                              <div class="text-container">
+                                  <h6>{{items.4.name}}</h6>
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+              </div>
+            </div>
+        </div>
+    </div>
+
+<!---------- top genres (part of top artists template) ----------> 
+      <h3 id="subtitle">YOUR TOP GENRES</h3>
+      <ul class="info">
+        <li class="list-group-item">1. {{items.0.genres}}</li>
+        <li class="list-group-item">2. {{items.1.genres}}</li>
+        <li class="list-group-item">3. {{items.2.genres}}</li>
+        <li class="list-group-item">4. {{items.3.genres}}</li>
+        <li class="list-group-item">5. {{items.4.genres}}</li>
+      </ul>
+
+<!---------- moodboard ----------> 
+      <h3 id="subtitle">YOUR MOODBOARD :)</h3>
+      <div class="grid">
+        <div class="item item-1">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" onload="this.onload=null; this.src=getImagePath('{{items.1.genres}}');" />
+        </div>
+        <div class="item item-2">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" onload="this.onload=null; this.src=getImagePath('{{items.2.genres}}');" />
+        </div>
+        <div class="item item-3">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" onload="this.onload=null; this.src=getImagePath('{{items.3.genres}}');" />
+        </div>
+        <div class="item item-4">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" onload="this.onload=null; this.src=getImagePath('{{items.5.genres}}');" />
+        </div>
+        <div class="item item-5">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" onload="this.onload=null; this.src=getImagePath('{{items.1.genres}}');" />
+        </div>
+        <div class="item item-6">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" onload="this.onload=null; this.src=getImagePath('{{items.2.genres}}');" />
+        </div>
+        <div class="item item-7">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" onload="this.onload=null; this.src=getImagePath('{{items.4.genres}}');" />
+        </div>
+        <div class="item item-8">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" onload="this.onload=null; this.src=getImagePath('{{items.5.genres}}');" />
+        </div>
+        <div class="item item-9">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" onload="this.onload=null; this.src=getImagePath('{{items.3.genres}}');" />
+        </div>
+        <div class="item item-10">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" onload="this.onload=null; this.src=getImagePath('{{items.0.genres}}');" />
+        </div>
+      </div>
+    </script>
+
+    <!---------- oauth template ----------> 
+    <script id="oauth-template" type="text/x-handlebars-template">
+    </script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>\
+
+
+    <!---------- JS FOR SPOTIFY DATA RENDERING ----------> 
+    <script>
+      (function() {
+        /**
+         * Obtains parameters from the hash of the URL
+         * @return Object
+         */
+        function getHashParams() {
+          var hashParams = {};
+          var e, r = /([^&;=]+)=?([^&;]*)/g,
+              q = window.location.hash.substring(1);
+          while ( e = r.exec(q)) {
+             hashParams[e[1]] = decodeURIComponent(e[2]);
+          }
+          return hashParams;
+        }
+
+        var userProfileSource = document.getElementById('user-profile-template').innerHTML,
+            userProfileTemplate = Handlebars.compile(userProfileSource),
+            userProfilePlaceholder = document.getElementById('user-profile');
+
+        var userTopArtists = document.getElementById('user-topArtists-template').innerHTML,
+            userTopArtistsTemplate = Handlebars.compile(userTopArtists),
+            userTopArtistsPlaceholder = document.getElementById('user-topArtists');
+
+        var userTopSongs = document.getElementById('user-topSongs-template').innerHTML,
+            userTopSongsTemplate = Handlebars.compile(userTopSongs),
+            userTopSongsPlaceholder = document.getElementById('user-topSongs');
+
+        var oauthSource = document.getElementById('oauth-template').innerHTML,
+            oauthTemplate = Handlebars.compile(oauthSource),
+            oauthPlaceholder = document.getElementById('oauth');
+
+        var params = getHashParams();
+
+        var access_token = params.access_token,
+            refresh_token = params.refresh_token,
+            error = params.error;
+
+        if (error) {
+          alert('There was an error during the authentication');
+        } else {
+          if (access_token) {
+            // render oauth info
+            oauthPlaceholder.innerHTML = oauthTemplate({
+              access_token: access_token,
+              refresh_token: refresh_token
+            });
+
+            $.ajax({
+                url: 'https://api.spotify.com/v1/me',
+                headers: {
+                  'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+
+                  $('#login').hide();
+                  $('#loggedin').show();
+                }
+            });
+            $.ajax({
+                url: 'https://api.spotify.com/v1/me/top/artists?time_range=short_term&limit=5',
+                headers: {
+                  'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                  userTopArtistsPlaceholder.innerHTML = userTopArtistsTemplate(response);
+
+                  $('#login').hide();
+                  $('#loggedin').show();
+                }
+            });
+            $.ajax({
+                url: 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=5',
+                headers: {
+                  'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                  userTopSongsPlaceholder.innerHTML = userTopSongsTemplate(response);          
+                  $('#login').hide();
+                  $('#loggedin').show();
+                }
+            });
+          } else {
+              // render initial screen
+              $('#login').show();
+              $('#loggedin').hide();
+          }
+
+          document.getElementById('obtain-new-token').addEventListener('click', function() {
+            $.ajax({
+              url: '/refresh_token',
+              data: {
+                'refresh_token': refresh_token
+              }
+            }).done(function(data) {
+              access_token = data.access_token;
+              oauthPlaceholder.innerHTML = oauthTemplate({
+                access_token: access_token,
+                refresh_token: refresh_token
+              });
+            });
+          }, false);
+        }
+      })();
+    </script>
+
+
+<!---------- JS FOR INFO BUTTON ON HOMEPAGE ----------> 
+<script>
+  var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+  var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    return new bootstrap.Popover(popoverTriggerEl)
+  })
+  var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
+  trigger: 'focus'
+  })
+  </script>
+
+
+<!---------- JS GENERATING MOODBOARD PICTURES ----------> 
+<script>
+  var prevNo = -1
+  function getImagePath(genre){
+    var happy_pic = ['dataset/bright colors/Image_1.jpg', 'dataset/bright colors/Image_2.jpg', 'dataset/excited/excited1.jpeg', 'dataset/excited/excited2.jpeg', 'dataset/happy mood/happy1.jpeg', 'dataset/happy mood/happy2.jpeg', 'dataset/happy mood/happy3.jpeg', 'dataset/happy mood/happy4.jpeg', 'dataset/happy mood/happy5.jpeg', 'dataset/happy mood/happy6.jpeg', 'dataset/happy mood/happy7.jpeg', 'dataset/happy mood/Image_3.jpg', 'dataset/happy mood/Image_4.jpg', 'dataset/happy mood/Image_5.jpg'];
+    var random = Math.floor(Math.random() * happy_pic.length);
+    if (random == prevNo) {
+      getImagePath(genre);
+      return;
+    } else {
+      prevNo = random;
+      var happy_pic = happy_pic[random];
+    }
+
+    var fun_pic = ['dataset/fun/Image_1.jpg', 'dataset/fun/Image_2.jpg', 'dataset/fun/Image_3.jpg', 'dataset/fun/Image_4.jpg', 'dataset/fun/Image_5.jpg', 'dataset/excited/Image_2.jpg'];
+    var fun_pic = fun_pic[Math.floor(Math.random() * fun_pic.length)];
+
+    var cool_pic = ['dataset/cool/Image_1.jpg', 'dataset/cool/Image_2.jpg', 'dataset/cool/Image_3.jpg', 'dataset/cool/Image_4.jpg', 'dataset/cool/Image_5.jpg'];
+    var cool_pic = cool_pic[Math.floor(Math.random() * cool_pic.length)];
+
+    var sad_pic = ['dataset/sad/Image_1.jpg', 'dataset/sad/Image_2.jpg', 'dataset/sad anime/Image_1.jpg', 'dataset/dark colors/Image_1.jpg', 'dataset/dark colors/Image_2.jpg', 'dataset/dark colors/Image_3.jpg', 'dataset/dark colors/Image_4.jpg', 'dataset/dark colors/Image_5.jpg'];
+    var sad_pic = sad_pic[Math.floor(Math.random() * sad_pic.length)];
+
+    if (genre == "pop" || "post-teen pop" || "electropop" || "dance pop" || "alt z" || "r&b" || "social media pop" || "tropical house" || "pop rap" || "pop dance" || "indie poptimism" || "pop rock" || "urban contemporary" || "edm" || "uk pop" || "neo mellow" || "chill r&b" || "viral pop" || "alternative r&b" || "modern rock" || "italian pop" || "pop r&b" || "art pop" || "hip pop" || "indie pop" || "escape room" || "metropopolis" || "k-pop" || "latin viral pop" || "mexican pop" || "russian alt pop" || "german pop" || "latin pop" || "russian pop" || "latin arena pop" || "british soul" || "swedish pop" || "boy band" || "latin alternative" || "europop" || "australian pop" || "spanish pop" || "talent show" || "francoton" || "turkish trap pop" || "contemporary r&b" || "rock en espanol" || "neo soul" || "puerto rican pop" || "pop nacional" || "mexican rock" || "latin rock" || "russian hip hop" || "underground hip hop" || "indonesian pop" || "new wave pop" || "italian hip hop" || "k-pop boy group" || "turkish pop" || "indietronica" || "russian trap" || "country road" || "dark trap" || "dutch pop" || "trap italiana" || "ohio hip hop" || "french indie pop" || "desi hip hop" || "emo rap" || "australian hip hop" || "chicago rap" || "contemporary country" || "new romantic" || "new rave" || "latin" || "country pop" || "canadian pop" || "modern country rock" || "pittsburgh rap" || "australian dance" || "deep german hip hop" || "argentine rock" || "german rock" || "lgbtq+ hip hop" || "girl group" || "alternative dance" || "synthpop" || "turkish hip hop" || "vapor soul" || "pop soul" || "tamil pop" || "j-pop" || "canadian hip hop" || "brazilian rock" || "sertanejo universitario" || "polish hip hop" || "sertanejo" || "sertanejo pop" || "dance rock" || "funk rock" || "turkish trap" || "german hip hop" || "norwegian pop" || "indie soul" || "atl hip hop" || "new wave" || "sad rap" || "colombian pop" || "uk hip hop" || "pop edm" || "southern hip hop" || "north carolina hip hop" || "urbano espanol" || "australian rock" || "mandopop" || "miami hip hop" || "trap" || "disco" || "meme rap" || "new orleans rap" || "rap conscient" || "detroit hip hop" || "k-pop girl group" || "alternative hip hop" || "la indie" || "nyc rap" || "toronto rap" || "conscious hip hop" || "quiet storm" || "electronic trap" || "hip hop" || "new french touch" || "french hip hop" || "rap" || "modern bollywood" || "pop urbaine" || "plugg" || "indie r&b" || "country dawn" || "punjabi pop" || "dirty south rap" || "brazilian hip hop" || "canadian contemporary r&b" || "aesthetic rap" || "soft rock" || "folk-pop" || "trap triste" || "bedroom pop" || "permanent wave" || "slap house" || "cali rap" || "dfw rap" || "german trap" || "grupera" || "italian adult pop" || "pagode" || "dutch hip hop" || "pluggnb" || "downtempo" || "yacht rock" || "queens hip hop" || "uk dance" || "french pop" || "gangster rap" || "trap brasileiro" || "vapor trap" || "nova mpb" || "argentine hip hop" || "electronica" || "melodic rap" || "anime" || "forro" || "trap argentino" || "rap francais" || "reggae fusion" || "arrocha" || "funk" || "heartland rock" || "christian music" || "mexican hip hop" || "cantautor" || "country" || "trap queen" || "hardcore hip hop" || "modern blues rock" || "christian alternative rock" || "indie rock" || "electro house" || "j-rock" || "opm" || "piano rock" || "brostep" || "desi pop" || "mellow gold" || "modern alternative rock" || "glam rock" || "rap rock" || "eurodance" || "rock" || "beatlesque" || "lilith" || "motown" || "texas country" || "funk metal" || "east coast hip hop" || "acoustic pop" || "drift phonk" || "florida rap" || "funk carioca" || "memphis hip hop" || "viral rap" || "j-poprock" || "otacore" || "brooklyn drill" || "trap boricua" || "tropical" || "classic uk pop" || "big room" || "indiecoustica" || "west coast rap" || "classic rock" || "art rock" || "stomp and holler" || "alternative rock" || "sad lo-fi" || "album rock" || "progressive electro house" || "ccm" || "latin hip hop" || "britpop" || "musica mexicana" || "ranchera" || "gen z singer-songwriter")
+    {
+      image_filename = happy_pic;
+    }
+    else if (genre == "Dance/EDM" || "Edm" || "Bass House" || "Bass Trap" || "Big Room" || "Breakbeat" || "Breakcore" || "Brostep" || "Chillstep" || "Complextro" || "Deep Big Room" || "Deep Groove House" || "Deep House" || "Deep Tropical House" || "Disco House" || "Dubstep" || "Electro House" || "Electronic Trap" || "Electropop" || "Electro Swing" || "Filthstep" || "Future Bass" || "Future Garage" || "Future House" || "Gaming Dubstep" || "Gaming Edm" || "Glitch Hop" || "House" || "Indie Electropop" || "Melodic Dubstep" || "Pop Dance" || "Pop Edm" || "Progressive Electro House" || "Progressive House" || "Progressive Trance" || "Sky Room" || "Tech House" || "Trance" || "Tropical House" || "Uplifting Trance" || "Vapor Soul" || "Vapor Twitch" || "Vocal House")
+    {
+        image_filename = fun_pic;
+    }
+    else if (genre == "Hip Hop" || "Rap" || "Alternative Hip Hop" || "Atl Hip Hop" || "Atl Trap" || "Bounce" || "Chicago Rap" || "Christian Hip Hop" || "Conscious Hip Hop" || "Country Rap" || "Crunk" || "Dirty South Rap" || "East Coast Hip Hop" || "Electro" || "Gangster Rap" || "G Funk" || "Hardcore Hip Hop" || "Hyphy" || "Industrial Hip Hop" || "Jazz Rap" || "Melodic Rap" || "Nerdcore" || "Old School Hip Hop" || "Pop Rap" || "Queens Hip Hop" || "Southern Hip Hop" || "Trap" || "Underground Hip Hop" || "Vapor Trap" || "West Coast Rap")
+    {
+        image_filename = cool_pic;
+    }
+    else if (genre == "R&B" || "Alternative R&B" || "Disco" || "Funk" || "Gospel R&B" || "Indie R&B" || "Indie Soul" || "Motown" || "Neo R&B" || "Neo Soul" || "New Jack Swing" || "Pop R&B" || "Pop Soul" || "Quiet Storm" || "Soul" || "Trap Soul" || "Urban Contemporary")
+    {
+        image_filename = sad_pic;
+    }
+    else
+    {
+        image_filename = happy_pic;
+    }
+    return image_filename
+  }
+</script>
+  </body>
+</html>
